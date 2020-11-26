@@ -1,30 +1,118 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NEXT JS
 
-## Getting Started
+> Next.js is a React framework that is bound to ease your life as a React developer by abstracting away the common and redundant tasks (such as routing) into relatively simpler and powerful APIs. That way, you can focus on writing your apps instead of reinventing the wheel.
 
-First, run the development server:
+## Referents
+
+- [ReactJS](https://reactjs.org/)
+- [NextJS Basic Setup](https://nextjs.org/learn/basics/create-nextjs-app)
+- [NextJS Docs](https://nextjs.org/docs/getting-started)
+- [TP NextJS](https://tampm.com/blog/next-js/)
+
+## Create a Next.js App
 
 ```bash
-npm run dev
+npx create-next-app
 # or
-yarn dev
+yarn create next-app
+
+# upgrade
+yarn upgrade --latest
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Overview
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Customizing Babel Config
 
-## Learn More
+Next.js includes the next/babel preset to your app, which includes everything needed to compile React applications and server-side code. But if you want to extend the default Babel configs, it's also possible.
 
-To learn more about Next.js, take a look at the following resources:
+Example: You need add lib [`styled-components`](https://github.com/styled-components/styled-components)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+=> So you need cutom next/babel by create file `/.babelrc` with example content:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```json
+{
+  "presets": ["next/babel"],
+  "plugins": [["styled-components", { "ssr": true }]]
+}
+```
 
-## Deploy on Vercel
+### Built-In CSS Support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Import CSS global
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Import `css/scss` files in `/_app.js`
+
+Before you can use Next.js' built-in SCSS support, be sure to install sass:
+
+```bash
+yarn add sass
+```
+
+Example
+
+```jsx
+import "@/assets/styles/globals.scss"
+# bootstrap
+import 'bootstrap/dist/css/bootstrap.css'
+# tailwind
+import '@/assets/styles/tailwind.css'
+```
+
+#### CSS Modules
+
+Next.js supports [CSS Modules](https://github.com/css-modules/css-modules) using the [name].module.css file naming convention.
+
+Example:
+
+First, create `/components/Button.module.css` with the following content:
+
+```css
+/*
+You do not need to worry about .error {} colliding with any other `.css` or
+`.module.css` files!
+*/
+.error {
+  color: white;
+  background-color: red;
+}
+```
+
+Then, create `/components/Button.js`, importing and using the above CSS file:
+
+```jsx
+import styles from './Button.module.css'
+
+export function Button() {
+  return (
+    <button
+      type="button"
+      // Note how the "error" class is accessed as a property on the imported
+      // `styles` object.
+      className={styles.error}
+    >
+      Destroy
+    </button>
+  )
+}
+```
+
+#### CSS-in-JS
+
+The simplest one is inline styles:
+
+```jsx
+function HiThere() {
+  return <p style={{ color: 'red' }}>hi there</p>
+}
+
+export default HiThere
+```
+
+Other solutions:
+
+- [styled-jsx](https://github.com/vercel/next.js/tree/canary/examples/with-styled-jsx)
+- [styled-components](https://github.com/vercel/next.js/tree/canary/examples/with-styled-components)
+- [emotion](https://github.com/vercel/next.js/tree/canary/examples/with-emotion)
+
+## Conventions
