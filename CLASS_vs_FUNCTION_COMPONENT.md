@@ -49,6 +49,8 @@ When we want to display the current count in a class, we read this.state.count:
 <p>You clicked {this.state.count} times</p>
 ```
 
+In a `function component`
+
 ```jsx
 <p>You clicked {count} times</p>
 ```

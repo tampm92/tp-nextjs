@@ -19,7 +19,6 @@ class ClockComponent extends React.Component {
         super(props)
         // Don't call this.setState() here!
         this.state = { date: new Date() }
-        this.handleClick = this.handleClick.bind(this)
     }
 
     //  to set up any subscriptions

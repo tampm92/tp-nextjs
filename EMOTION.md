@@ -43,9 +43,7 @@ Update file `/.babelrc`
 Example update `/pages/index.js`
 
 ```jsx
-import { jsx } from '@emotion/react'
-import Head from 'next/head'
-import { css, Global } from '@emotion/react'
+import { css, Global, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
 
 const globalStyles = (
@@ -64,32 +62,34 @@ const globalStyles = (
   />
 )
 
-const titleStyles = css`
+const Title = styled.h1`
   font-size: 50px;
   color: #0070f3;
-`
-const Title = styled.h1`
-  ${titleStyles};
+  text-align: center
 `
 
-export default function Home(props) {
+const Button = styled.button`
+  color: ${props =>
+    props.primary ? 'hotpink' : 'turquoise'};
+`
+
+const Container = styled.div(props => ({
+  display: 'flex',
+  flexDirection: props.column && 'column'
+}))
+
+const HomePage = () => {
   return (
     <>
-      <Head>
-        <title>SSR styled-components with Next.js Starter</title>
-      </Head>
-      <Container>
-        { globalStyles }
-        <Title>Hello, world!</Title>
-
-        <div
-          css={{
-            color: 'hotpink'
-          }}
-          {...props}
-        />
+      { globalStyles }
+      <Container column>
+        <Title>Example</Title>
+        <Button>This is a regular button.</Button>
+        <Button primary>This is a primary button.</Button>
       </Container>
     </>
   )
 }
+
+export default HomePage
 ```

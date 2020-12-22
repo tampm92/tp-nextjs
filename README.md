@@ -39,11 +39,13 @@ Example: You need add lib [`styled-components`](https://github.com/styled-compon
 
 ### Built-In CSS Support
 
+> By default NextJS suport 3 option for CSS: `CSS global`, `CSS Modules`, `CSS inline`
+
 #### Import CSS global
 
-Import `css/scss` files in `/_app.js`
+Import `css/scss` files in `/_app.jsx`
 
-Before you can use Next.js' built-in SCSS support, be sure to install sass:
+Before you can use Next.js's built-in SCSS support, be sure to install sass:
 
 ```bash
 yarn add sass
@@ -78,7 +80,7 @@ You do not need to worry about .error {} colliding with any other `.css` or
 }
 ```
 
-Then, create `/components/Button.js`, importing and using the above CSS file:
+Then, create `/components/Button.jsx`, importing and using the above CSS file:
 
 ```jsx
 import styles from './Button.module.css'
@@ -97,7 +99,7 @@ export function Button() {
 }
 ```
 
-#### CSS-in-JS
+#### CSS inline
 
 The simplest one is inline styles:
 
@@ -109,7 +111,7 @@ function HiThere() {
 export default HiThere
 ```
 
-Other solutions:
+> Other solutions:
 
 - [styled-jsx](https://github.com/vercel/next.js/tree/canary/examples/with-styled-jsx)
 - [styled-components](https://github.com/vercel/next.js/tree/canary/examples/with-styled-components)

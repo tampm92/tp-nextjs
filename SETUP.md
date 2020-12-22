@@ -17,31 +17,31 @@ yarn upgrade --latest
 ## Recommend
 
 - use VSCode IDE
-- use function component with hook (without app.js document.js)
+- use function component with hook (without `app.jsx`, `document.jsx`)
 - use styled-components
 - with other UI framework (tailwind, bootstrap, ant design, ...)
 
 ### Update folder structure
 
-```css
+```js
 .
 ├── 📁 assets
 │   ├── 📁 styles
 │   │   └── 📝 globals.scss
 │   └── 📁 images
 ├── 📁 components
-│   ├── common
-│   └── partials
+│   ├── 📁 common
+│   └── 📁 partials
 ├── 📁 layouts
 │   ├── 📁 components
-│   ├── 📝 default.js
-│   └── 📝 error.js
+│   ├── 📝 default.jsx
+│   └── 📝 error.jsx
 ├── 📁 pages
-│   ├── 📝 _app.js
-│   ├── 📝 _document.js
-│   ├── 📝 _error.js
-│   ├── 📝 404.js
-│   └── 📝 index.js
+│   ├── 📝 _app.jsx
+│   ├── 📝 _document.jsx
+│   ├── 📝 _error.jsx
+│   ├── 📝 404.jsx
+│   └── 📝 index.jsx
 ├── 📁 public
 ├── 📝 .env
 ├── 📝 .env.development
@@ -107,7 +107,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '@/assets/styles/tailwind.css'
 ```
 
-#### Install styled-components
+#### Styles in JS
 
 Install libs
 
@@ -161,6 +161,69 @@ export default class MyDocument extends Document {
     }
   }
 }
+```
+
+Let enjoy
+
+Example update `/pages/index.js`
+
+```jsx
+import Head from 'next/head'
+import styled, { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+ h1 {
+   font-size: 4rem;
+ }
+`
+const Container = styled.div`
+  text-align: center;
+`
+const Title = styled.h1`
+  font-size: 50px;
+  color: #0070f3;
+`
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>SSR styled-components with Next.js Starter</title>
+      </Head>
+      <Container>
+        <GlobalStyle />
+        <Title>Hello, world!</Title>
+      </Container>
+    </>
+  )
+}
+```
+
+#### Import CSS/SCSS files (not CSS Modules)
+
+> By default, NextJS not suport import `CSS/SCSS` in js (Exception `_app.jsx`). It only suport [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css)
+
+So we need custom NextJS to can import `CSS/SCSS` file in `jsx`.
+
+- Install libs
+
+```bash
+yarn add -D @zeit/next-sass @zeit/next-css
+```
+
+- Custom `/next.config.js`
+
+```js
+const withSass = require('@zeit/next-sass')
+const withCSS = require('@zeit/next-css')
+
+module.exports = withSass(withCSS({
+  webpack: (config, options) => {
+    config.resolve.alias['@'] = __dirname
+
+    return config
+  },
+}))
 ```
 
 ## Setup layout
@@ -283,9 +346,13 @@ export default class MyApp extends App {
 }
 ```
 
+By default, we will use `layout default`. If you need use other layout, you can see the example below:
+
 Update `/pages/index.js`
 
 ```jsx
+import ErrorLayout from '@/layouts/error.js'
+
 const HomePage = () => {
   return (
     <>
@@ -293,6 +360,8 @@ const HomePage = () => {
     </>
   )
 }
+
+HomePage.layout = ErrorLayout
 
 export default HomePage
 ```

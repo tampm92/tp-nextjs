@@ -86,7 +86,12 @@ const Title = styled.h1`
   color: #0070f3;
 `
 
-export default function Home() {
+const Button = styled.button`
+  color: ${props =>
+    props.primary ? 'hotpink' : 'turquoise'};
+`
+
+const HomePage = () => {
   return (
     <>
       <Head>
@@ -95,8 +100,12 @@ export default function Home() {
       <Container>
         <GlobalStyle />
         <Title>Hello, world!</Title>
+        <Button>This is a regular button.</Button>
+        <Button primary>This is a primary button.</Button>
       </Container>
     </>
   )
 }
+
+export default HomePage
 ```
