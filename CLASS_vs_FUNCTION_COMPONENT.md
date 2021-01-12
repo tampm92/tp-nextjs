@@ -1,6 +1,19 @@
 # Class Component VS Function Component - REACT JS
 
-- [ReactJS hooks-effect](https://reactjs.org/docs/hooks-effect.html)
+## Quiz
+
+### Why Hooks to React? 
+- Hooks allow you to reuse stateful logic without changing your component hierarchy.
+- Hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data)
+- Hooks let you use more of React’s features without classes.
+- Hooks don’t contain any breaking changes and without rewriting any existing code. 
+- Hooks provide a more direct API to the React concepts you already know: props, state, context, refs, and lifecycle. As we will show later, Hooks also offer a new powerful way to combine them.
+
+### When use Function Component or Class Component?
+- With feature/flow need to structure as a OOP pattern: use Class Component
+- With a standalone widget use Function Component
+
+> More details below
 
 ## Class Component
 

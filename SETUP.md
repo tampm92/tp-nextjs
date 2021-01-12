@@ -17,7 +17,7 @@ yarn upgrade --latest
 ## Recommend
 
 - use VSCode IDE
-- use function component with hook (without `app.jsx`, `document.jsx`)
+- use class component if possible (if need can use function component with hook)
 - use styled-components
 - with other UI framework (tailwind, bootstrap, ant design, ...)
 
@@ -55,7 +55,7 @@ yarn upgrade --latest
 
 ### Use alias `@/` for path
 
-Exmaple: `@/layouts/default`
+Exmaple: `@/layouts/default.jsx`
 
 To do:
 
@@ -89,25 +89,15 @@ module.exports = {
 
 #### Import CSS global
 
-Import `css/scss` files in `/_app.js`
-
-Before you can use Next.js' built-in SCSS support, be sure to install sass:
-
-```bash
-yarn add sass
-```
+Import `css` files in `/_app.jsx`
 
 Example
 
 ```jsx
-import "@/assets/styles/globals.scss"
-// bootstrap
-import 'bootstrap/dist/css/bootstrap.css'
-// tailwind
-import '@/assets/styles/tailwind.css'
+import '@/assets/styles/globals.css'
 ```
 
-#### Styles in JS
+#### Styles in JS use `styled-components`
 
 Install libs
 
@@ -128,7 +118,7 @@ Update file `/.babelrc`
 }
 ```
 
-Finally, let’s update `/pages/_document.js`
+Finally, let’s update `/pages/_document.jsx`
 
 ```jsx
 import Document from 'next/document'
@@ -165,7 +155,7 @@ export default class MyDocument extends Document {
 
 Let enjoy
 
-Example update `/pages/index.js`
+Example update `/pages/index.jsx`
 
 ```jsx
 import Head from 'next/head'
@@ -230,7 +220,7 @@ module.exports = withSass(withCSS({
 
 Create files with content
 
-- `layouts/components/Header.js`
+- `layouts/components/Header.jsx`
 
 ```jsx
 const Header = (props) => {
@@ -244,7 +234,7 @@ const Header = (props) => {
 export default Header
 ```
 
-- `layouts/components/Footer.js`
+- `layouts/components/Footer.jsx`
 
 ```jsx
 const Footer = (props) => {
@@ -258,7 +248,7 @@ const Footer = (props) => {
 export default Footer
 ```
 
-- `layouts/default.js`
+- `layouts/default.jsx`
 
 ```jsx
 import Header from '@/layouts/components/Header'
@@ -277,7 +267,7 @@ const DefaultLayout = ({ children }) => {
 export default DefaultLayout
 ```
 
-- `layouts/error.js`
+- `layouts/error.jsx`
 
 ```jsx
 export default function ErrorLayout({ children }) {
@@ -290,7 +280,7 @@ export default function ErrorLayout({ children }) {
 }
 ```
 
-Update `/pages/_app.js`
+Update `/pages/_app.jsx`
 
 ```jsx
 import React from "react"
@@ -346,12 +336,12 @@ export default class MyApp extends App {
 }
 ```
 
-By default, we will use `layout default`. If you need use other layout, you can see the example below:
+By default, we will use `layouts/default.jsx`. If you need use other layout, you can see the example below:
 
-Update `/pages/index.js`
+Update `/pages/index.jsx`
 
 ```jsx
-import ErrorLayout from '@/layouts/error.js'
+import ErrorLayout from '@/layouts/error.jsx'
 
 const HomePage = () => {
   return (

@@ -43,22 +43,12 @@ Example: You need add lib [`styled-components`](https://github.com/styled-compon
 
 #### Import CSS global
 
-Import `css/scss` files in `/_app.jsx`
-
-Before you can use Next.js's built-in SCSS support, be sure to install sass:
-
-```bash
-yarn add sass
-```
+Import `css` files in `/_app.jsx`
 
 Example
 
 ```jsx
-import "@/assets/styles/globals.scss"
-# bootstrap
-import 'bootstrap/dist/css/bootstrap.css'
-# tailwind
-import '@/assets/styles/tailwind.css'
+import '@/assets/styles/globals.css'
 ```
 
 #### CSS Modules

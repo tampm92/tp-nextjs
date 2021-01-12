@@ -1,7 +1,9 @@
 # dynamic-import - NEXT JS
 
-> How resolve: Expected server HTML to contain a matching `<div>` in `<div>`
-> When the module includes a library that only works in the browser (not working on server-side)
+## Whuy?
+
+- How resolve: Expected server HTML to contain a matching `<div>` in `<div>`
+- When the module includes a library that only works in the browser (not working on server-side)
 
 ## Referents
 
@@ -51,7 +53,7 @@ const ChartsPage = () => {
 export default ChartsPage
 ```
 
-- Problem
+- `Problem`
 
 When run this codes, you will see error: `Expected server HTML to contain a matching <div> in <div>`
 
@@ -102,5 +104,3 @@ const ChartsPage = () => {
 
 export default ChartsPage
 ```
-
-> To can understand more than, please see this [docs](https://nextjs.org/docs/advanced-features/dynamic-import)
