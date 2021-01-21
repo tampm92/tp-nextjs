@@ -43,6 +43,9 @@ yarn upgrade --latest
 │   ├── 📝 404.jsx
 │   └── 📝 index.jsx
 ├── 📁 public
+├── 📁 shared
+│   ├── 📝config.jsx
+│   └── 📁 services
 ├── 📝 .env
 ├── 📝 .env.development
 ├── 📝 .env.production
